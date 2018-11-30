@@ -1,0 +1,49 @@
+<apex:page controller="standardPaginationCon" tabStyle="Contact">
+        <apex:form id="accountForm" > 
+            <apex:pageMessages /> 
+            <apex:pageBlock title="Search Results" > 
+                <apex:pageBlockButtons >
+                    <apex:outputPanel rendered="{!totalPages > 1}" >
+                        <table border="0" style="width:100%; text-align: right">
+                            <tr>
+                                <td style="width:100%">&nbsp;</td>
+                                <td style="vertical-align: middle">
+                                    <apex:actionStatus id="statusPaging">
+                                        <apex:facet name="start">
+                                            <apex:outputPanel >Please wait...</apex:outputPanel> 
+                                        </apex:facet>
+                                        <apex:facet name="stop" />
+                                    </apex:actionStatus>
+                                </td>
+                                <td style="text-align: center; white-space: nowrap">
+                                    <b>Page:</b><br/>{!contactsSetController.PageNumber} of {!totalPages}
+                                </td>
+                                <td style="vertical-align: middle">
+                                    <!--<apex:commandButton value="|<" action="{!contactsSetController.First}" disabled="{!Not(contactsSetController.HasPrevious)}" rerender="accountForm" status="statusPaging"/>-->
+                                    <apex:commandButton value="First Page" action="{!contactsSetController.First}" disabled="{!Not(contactsSetController.HasPrevious)}" rerender="accountForm" status="statusPaging"/>
+                                </td>
+                                <td style="vertical-align: middle">
+                                    <apex:commandButton value="<" action="{!contactsSetController.Previous}" disabled="{!Not(contactsSetController.HasPrevious)}" rerender="accountForm" status="statusPaging"/>
+                                </td>
+                                <td style="vertical-align: middle">
+                                    <apex:commandButton value=">" action="{!contactsSetController.Next}" disabled="{!Not(contactsSetController.HasNext)}" rerender="accountForm" status="statusPaging"/>
+                                </td>
+                                <td style="vertical-align: middle">
+                                    <!--<apex:commandButton value=">|" action="{!contactsSetController.Last}" disabled="{!Not(contactsSetController.HasNext)}" rerender="accountForm" status="statusPaging"/>-->
+                                    <apex:commandButton value="Lst Page" action="{!contactsSetController.Last}" disabled="{!Not(contactsSetController.HasNext)}" rerender="accountForm" status="statusPaging"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>  
+                </apex:pageBlockButtons> 
+      
+                <apex:pageBlockTable value="{!Contacts}" var="contact" > 
+                    <apex:column headerValue="Name"> 
+                        <apex:outputLink value="/{!contact.id}" id="contactLink">{!contact.name}</apex:outputLink> 
+                    </apex:column> 
+                    <apex:column value="{!contact.FirstName}"/> 
+                    <apex:column value="{!contact.LastName}"/> 
+                </apex:pageBlockTable> 
+            </apex:pageBlock> 
+        </apex:form> 
+    </apex:page>

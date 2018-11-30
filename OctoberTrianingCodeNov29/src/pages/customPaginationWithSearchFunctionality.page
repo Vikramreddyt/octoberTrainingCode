@@ -1,0 +1,31 @@
+<apex:page standardController="Account" extensions="dynamicAcc_Controller" sidebar="false">
+ <apex:form > 
+  <script>
+        function searchAccount(){
+          //alert('hjjh');
+          searchServer();
+        }
+  </script>
+  
+      <apex:actionFunction name="searchServer" action="{!strSearch}" rerender="Selected_Account">
+      </apex:actionFunction>
+      <b>Enter the Account Name:</b><apex:inputText onkeyup="searchAccount()" value="{!searchStr}" id="srchText" /> <!--onkeydown="{!strSearch}"-->
+  <apex:pageblock Title="Account" id="Selected_Account">
+   
+       <apex:pageBlockTable value="{!accLst}" var="s" >
+              <!-- <apex:column headervalue="Account Name" value="{!s.name}" rendered="true"/>  -->
+              
+              <apex:column headerValue="Account Name">
+                <apex:outputLink target="_blank" value="/{!s.id}">
+                <apex:outputText value="{!s.name}"/>
+                </apex:outputLink>
+            </apex:column>   
+            
+                
+            <apex:column headervalue="Phone" value="{!s.phone}" rendered="true"/>
+            
+       </apex:pageBlockTable>
+       <apex:commandButton value="Create an Account" action="{!redirectPage}" rendered="{!accNew }"/>
+  </apex:pageblock>
+  </apex:form>
+</apex:page>
