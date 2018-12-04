@@ -1,0 +1,63 @@
+<!-- Useful Links
+    https://datatables.net/reference/api/
+    https://datatables.net/reference/option/ajax
+    https://www.sitepoint.com/working-jquery-datatables/
+    https://datatables.net/reference/type/function
+-->
+<apex:page showHeader="false" sidebar="false" controller="paginationjquery">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:stylesheet value="https://cdn.datatables.net/1.10.0/css/jquery.dataTables.css"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
+            <apex:includeScript value="https://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"/>
+            <!--<apex:pageblockTable> -->
+            <apex:dataTable value="{!acc}" var="ac" id="testTable" >
+                <apex:column >
+                    <apex:facet name="header"><apex:outputLabel value="ID" /></apex:facet>
+                    <apex:outputText value="{!ac.ID}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header"><apex:outputLabel value="Account Number" /></apex:facet>
+                    <apex:outputText value="{!ac.AccountNumber}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header"><apex:outputLabel value="Sic" /></apex:facet>
+                    <apex:outputText value="{!ac.Sic}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header"><apex:outputLabel value="Phone" /></apex:facet>
+                    <apex:outputText value="{!ac.phone}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header"><apex:outputLabel value="Name" /></apex:facet>
+                    <apex:outputText value="{!ac.Name}"/>
+                </apex:column>
+            </apex:dataTable>    
+        <!--</apex:pageblockTable>-->
+            <button type="button" id="load">Load</button>
+        </apex:pageBlock>
+    </apex:form>
+    <style type="text/css" media="screen">
+         //Applies the backgroung color logic to the Table
+         table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
+                background-color: #F1F1F1;
+            }   
+    </style>
+    <script type="text/javascript" charset="utf8">
+        var oTable;
+        var currentNumberDisplayed = 5;
+     
+        $(document).ready(function() {
+            $('#load').click( function () {
+                var oSettings = oTable.fnSettings();
+                currentNumberDisplayed += 5;
+                oSettings._iDisplayLength = currentNumberDisplayed;
+                oTable.fnDraw();
+            });
+     
+            oTable = $('[id$=testTable]').dataTable({
+                "iDisplayLength": 5
+            });
+        });
+    </script>
+</apex:page>
