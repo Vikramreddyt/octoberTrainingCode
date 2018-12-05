@@ -1,0 +1,63 @@
+<!--
+     To Verify the functionality, disable Developer Mode by traversing to User > Setting > Advanced user settings 
+     
+-->     
+
+<apex:page id="pageId">
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Account" fields="Id,Name,Industry,AccountNumber,Email_Id__c">
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+    
+    <script>
+    var createAccount = function(){
+        try{
+            var Accname = document.getElementById("accname").value;
+            var Accindustry = document.getElementById("accind").value;
+            var Accnumber = document.getElementById("accnum").value;
+            var Accemail = document.getElementById("accemail").value;
+            // when we are defining the elements inside acDetails variable we need to use APINames of the Field : Values gathered from Id's.
+            var acDetails = { Name: Accname, Industry: Accindustry,AccountNumber:Accnumber,Email_Id__c: Accemail};
+            var ct = new SObjectModel.Account();//Inside Apex we will be using some thing like Account acc = new Account();
+            ct.create(acDetails , function(err) {
+                if(err) {
+                    console.log(err); // to check the logs in console verify using F12 button and we can check in Console Tab. 
+                    alert(err.message);
+                }
+                else {
+                    console.log(ct.log()); 
+                    console.log(ct.get('Id')); // Id is set when create completes
+                    alert('account created successfully with id'+ct.get('Id'));
+                    window.location.href=window.location.href.substr(0,window.location.href.indexOf('.com/')+5)+ct.get('Id');
+                }
+                
+            });
+        }catch(e){
+            alert(e);
+        }
+    };
+    </script>
+    
+    <h1 style="font-size:20px;"><center>
+        Create Account via Remote Objects
+        </center></h1>
+    
+    <br/>
+    <table>
+        <tr>
+            <td>Account Name:</td><td><input type="text" name="name" id="accname"/></td>
+        </tr>
+        <tr>
+            <td>Industry:</td><td><input type="text" name="industry" id="accind"/></td>
+        </tr>
+        <tr>
+            <td>AccountNumber:</td><td><input type="text" name="accountNumber" id="accnum"/></td>
+        </tr>
+        <tr>
+            <td>Email:</td><td><input type="email" name="accountEmail" id="accemail"/></td>
+        </tr>
+        <tr>
+            <td><button onclick="createAccount()">Create Account</button></td>
+        </tr>
+    </table>      
+</apex:page>
