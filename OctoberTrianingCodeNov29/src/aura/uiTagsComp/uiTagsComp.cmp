@@ -1,0 +1,26 @@
+<aura:component >
+    <!--<aura:attribute name="newAccount" type="Account"/>
+    <ui:inputText label="Account Name" value="{!v.newAccount.Name}"/>
+    <ui:inputText label="Account Number" value="{!v.newAccount.AccountNumber}"/>
+    <ui:button label="Create Account" />-->
+    <ui:inputText label="Text Box"/><br/><br/>
+    <ui:inputCheckBox label="Check Box"/><br/><br/>
+    <ui:inputNumber label="Number"/><br/><br/>
+    <ui:inputDateTime label="Date and Time"/><br/><br/>
+    <ui:inputDate label="Date"/><br/><br/>
+    <ui:inputDateTime label="Date and Time with Date Picker" displayDatePicker="true"/><br/><br/>
+    <ui:inputDate label="Date with Date Picker" displayDatePicker="true"/><br/><br/>
+    <ui:inputRadio label="Radio Button"/><br/><br/>
+    <ui:inputSelect label="Single Pick List">
+        <ui:inputSelectOption text="--None--" value="true"/>
+        <ui:inputSelectOption text="Red"/>
+        <ui:inputSelectOption text="Green" />
+        <ui:inputSelectOption text="Blue" />
+ </ui:inputSelect><br/><br/>
+    <ui:inputSelect multiple="true" label="Multi Pick List">
+        <ui:inputSelectOption text="All Primary" label="All Contacts"/>
+        <ui:inputSelectOption text="All Primary" label="All Primary"/>
+        <ui:inputSelectOption text="All Secondary" label="All Secondary"/>
+    </ui:inputSelect><br/><br/>
+    <ui:button label="Button"/>    
+</aura:component>

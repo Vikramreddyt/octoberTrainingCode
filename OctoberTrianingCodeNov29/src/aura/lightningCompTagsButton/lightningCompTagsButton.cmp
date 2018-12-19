@@ -1,0 +1,45 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<!-- bare -->
+    <lightning:buttonIcon iconName="utility:settings" variant="bare" onclick="{! c.handleClick }" alternativeText="Settings" />
+    <lightning:buttonIcon iconName="utility:settings" variant="bare" onclick="{! c.handleClick }" disabled="true" alternativeText="Settings (disabled)" />
+
+    <!-- with container -->
+    <lightning:buttonIcon iconName="utility:settings" variant="container" alternativeText="Settings" />
+    <lightning:buttonIcon iconName="utility:settings" variant="container" disabled="true" alternativeText="Settings (disabled)" />
+
+    <!-- with border / by default -->
+    <lightning:buttonIcon iconName="utility:settings"  alternativeText="Settings" />
+    <lightning:buttonIcon iconName="utility:settings"  disabled="true" alternativeText="Settings (disabled)" />
+
+    <!-- with border filled -->
+    <lightning:buttonIcon iconName="utility:settings"  variant="border-filled" alternativeText="Settings" />
+    <lightning:buttonIcon iconName="utility:settings"  variant="border-filled" disabled="true" alternativeText="Settings (disabled)" />
+
+    <!--Sizes -->
+    <lightning:buttonIcon iconName="utility:down"  size="xx-small" alternativeText="View More" />
+    <lightning:buttonIcon iconName="utility:down"  size="x-small" alternativeText="View More" />
+    <lightning:buttonIcon iconName="utility:down"  size="small" alternativeText="View More" />
+    <lightning:buttonIcon iconName="utility:down"  alternativeText="View More" />
+
+    <lightning:buttonIcon iconName="utility:down"  size="x-small"   onclick="{! c.handleClick }" variant="bare" alternativeText="View More" />
+    <lightning:buttonIcon iconName="utility:down"  size="small"     variant="bare" alternativeText="View More" />
+    <lightning:buttonIcon iconName="utility:down"  variant="bare"   alternativeText="View More" />
+    <lightning:buttonIcon iconName="utility:down"  size="large"     variant="bare" alternativeText="View More" />
+    
+    <!-- with icon styling -->
+    <lightning:buttonIcon iconName="utility:settings" variant="bare" alternativeText="Settings" iconClass="dark"/>
+    
+    <aura:attribute name="liked" default="false" type="Boolean" />
+    <aura:attribute name="answered" default="false" type="Boolean" />
+
+    <div class="slds-m-around_medium">
+        <lightning:buttonIconStateful iconName="utility:like" selected="{! v.liked }" onclick="{! c.handleLikeButtonClick }" alternativeText="Like" />
+    </div>
+    <div class="slds-m-around_medium">
+        <lightning:buttonIconStateful iconName="utility:answer" selected="{! v.answered }" onclick="{! c.handleAnswerButtonClick }" alternativeText="Answer" size="small"/>
+    </div>
+    <!-- disabled -->
+    <div class="slds-m-around_medium">
+        <lightning:buttonIconStateful iconName="utility:like"  alternativeText="Disabled" disabled="true"/>
+    </div>
+</aura:component>
