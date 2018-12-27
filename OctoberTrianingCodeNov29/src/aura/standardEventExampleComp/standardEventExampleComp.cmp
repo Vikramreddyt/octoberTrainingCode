@@ -1,0 +1,11 @@
+<aura:component>
+    <aura:attribute name="text" type="String" default="Sample Text"/>
+    <input type="button" value="Flawed HTML Button" onclick="alert('this will not work')"/>
+    <br/>
+    	<lightning:button label="Save" onclick="{!c.handleClick}"/>
+    	<lightning:button label="Cancel" onclick="{!c.handleClick}"/>
+    	<lightning:button label="Refresh" onclick="{!c.handleClick}"/>
+    	<lightning:button label="Edit" onclick="{!c.handleClick}"/>
+    <br/>
+    {!v.text}
+</aura:component>
